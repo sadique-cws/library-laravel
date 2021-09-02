@@ -1,0 +1,28 @@
+users
+    id
+    name 
+    email
+    password
+books
+    id 
+    title
+    isbn
+    author
+    languge
+    no_of_page
+    edition
+    rent_price (as per day)
+
+order 
+    order_id
+    ordered (boolean) True 
+    user_id (fk)
+
+
+orderItem
+    orderItem_id
+    order_id (fk)
+    ordered (Boolean) 
+    user_id (fk)
+    book_id (fk)
+    qty (defult = 1)
