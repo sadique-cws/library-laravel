@@ -7,6 +7,10 @@ use Livewire\Component;
 class ManageStudents extends Component
 {
     public $search = '';
+
+    public function delete($id){
+        User::find($id)->delete();
+    }
     public function render()
     {
         return view('livewire.manage-students',["students"=> User::where("name","LIKE","%$this->search%")->get()]);

@@ -19,7 +19,8 @@
             <td>{{$student->email}}</td>
             <td>{{$student->aadhaar}}</td>
             <td>
-                
+                <button type="button" class="btn btn-danger" wire:click="delete({{$student->id}})">X</button>
+                <button type="button" class="btn btn-info">edit</button>
             </td>
         </tr>         
     @endforeach

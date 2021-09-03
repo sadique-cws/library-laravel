@@ -24,6 +24,10 @@
             <td>{{$book->language}}</td>
             <td>{{$book->rent_price}}</td>
             <td>{{$book->isbn}}</td>
+            <td>
+                <button type="button" class="btn btn-danger" wire:click="delete({{$book->id}})">X</button>
+                <button type="button" class="btn btn-info">edit</button>
+            </td>
         </tr>         
     @endforeach
     </table>

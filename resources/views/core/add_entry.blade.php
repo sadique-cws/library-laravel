@@ -7,7 +7,7 @@
             <div class="card-body">
                 <h2>Add entry page</h2>
 
-                {{-- livewire add entry component --}}
+               @livewire('add-entry')
             </div>
         </div>
     </div>
