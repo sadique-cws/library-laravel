@@ -6,17 +6,18 @@ use Livewire\Component;
 
 class AddStudent extends Component
 {
-    public $name, $aadhaar, $email, $password;
+    public $name, $aadhaar, $email, $password,$rfcode;
 
     protected $rules = [
         'name' => 'required',
         'email' => 'required',
         'aadhaar' => 'required',
         'password' => 'required',
+        'rfcode' => 'required'
     ];
 
     public function clear(){
-        $this->name = $this->aadhaar = $this->email = $this->password = "";
+        $this->name = $this->aadhaar = $this->email = $this->password = $this->rfcode  = "";
     }
 
     public function save(){

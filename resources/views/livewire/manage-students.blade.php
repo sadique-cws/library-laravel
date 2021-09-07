@@ -10,6 +10,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Aadhaar</th>
+            <th>RFCODE</th>
             <th>Action</th>
         </tr>
     @foreach ($students as $student)
@@ -18,6 +19,7 @@
             <td>{{$student->name}}</td>
             <td>{{$student->email}}</td>
             <td>{{$student->aadhaar}}</td>
+            <td>{{$student->rfcode}}</td>
             <td>
                 <button type="button" class="btn btn-danger" wire:click="delete({{$student->id}})">X</button>
                 <button type="button" class="btn btn-info">edit</button>

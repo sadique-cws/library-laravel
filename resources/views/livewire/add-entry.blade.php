@@ -1,18 +1,43 @@
 <div>
-    <form action="" method="POST">
+    <form  wire:submit.prevent="find">
         @csrf
         <div class="row">
-                <div class="col-12">
+                <div class="col-8">
                     <div class="mb-3">
                         <label for="">Select student</label>
-                        <select name="student" id="" class="form-control">
-                            <option value="">Select student</option>
-                            @foreach ($students as $s)
-                                <option value="{{$s->id}}">{{$s->name}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" wire:model="rfcode" class="form-control" placeholder="scan code here">
                     </div>
                 </div>
+                @if ($students != NULL)
+                    
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="">Roll</label>
+                        <input type="text" class="form-control" value="{{$students->id}}" disabled>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="">Name</label>
+                        <input type="text" class="form-control" value="{{$students->name}}" disabled>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" value="{{$students->email}}" disabled>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label for="">Aadhaar</label>
+                        <input type="text" class="form-control" value="{{$students->aadhaar}}" disabled>
+                    </div>
+                </div>
+
+                
+                @endif
+                
                 <div class="col-12">
                     <div class="row">
                         <div class="col">
@@ -21,6 +46,7 @@
                     </div>
                     <table class="table table-bordered">
                         <tr>
+                            <th>ISBN</th>
                             <th>Book</th>
                             <th>Date</th>
                             <th>Qty</th>
@@ -28,24 +54,41 @@
                         </tr>
                         <tr>
                             <td>
-                                <select name="book" id="" class="form-control">
-                                    <option value="">Select book</option>
-                                    @foreach ($books as $b)
-                                        <option value="{{$b->id}}">{{$b->title}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" wire:change="isbnFind" wire:model="isbn" class="form-control" placeholder="scan  ISBN">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" value="@if($books != NULL) {{$books->title}} @endif" disabled>
                             </td>
                             <td>
                                 <input type="date" class="form-control">
                             </td>
                             <td>
-                                <input type="number" class="form-control" value="1" min="1" max="5">
+                                <input type="number" class="form-control" wire:change="qtyUp" wire:model="qty" value="1" min="1" max="5">
                             </td>
                             <td>
-                                <input type="number" class="form-control" value="0" disabled>
+                                <input type="text" class="form-control" value="@if($books != NULL) {{$total}} @else 0 @endif" disabled>
                             </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3" rowspan="5"></td>
+                            <td>Total Amount</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <td>Membership Charge</td>
+                            <td>5100</td>
+                        </tr>
+                        <tr>
+                            <td>Discount</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Payment Amount</td>
+                            <td><h4>₹5600/-</h4></td>
+                        </tr>
+
                         </table>
-                        <button class="btn btn-success">Add Book</button>
                 </div>
                 <div class="card-footer mt-3">
                     <button type="submit" class="btn btn-danger float-end">Save</button>
