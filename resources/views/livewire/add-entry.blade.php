@@ -77,7 +77,7 @@
                         </tr>
                         <tr>
                             <td>Membership Charge</td>
-                            <td>5100</td>
+                            <td>{{$membership}}</td>
                         </tr>
                         <tr>
                             <td>Discount</td>
@@ -85,14 +85,17 @@
                         </tr>
                         <tr>
                             <td>Payment Amount</td>
-                            <td><h4>₹5600/-</h4></td>
+                            <td><h4>₹{{$payable_amount}}/-</h4></td>
                         </tr>
 
                         </table>
                 </div>
-                <div class="card-footer mt-3">
-                    <button type="submit" class="btn btn-danger float-end">Save</button>
-                </div>
+               
         </div>
+        <button type="submit">click</button>
     </form>
+
+    <div class="card-footer mt-3">
+        <button type="submit" class="btn btn-danger float-end" wire:click="create_order">Save</button>
+    </div>
 </div>
