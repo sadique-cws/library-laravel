@@ -27,7 +27,7 @@ Route::get("/add-entry",function(){
 
 //add active order page
 Route::get("/orders/active",function(){
-    return view("core.orders");
+    return view("core.active_order");
 })->name('orders.active');
 
 //add all order page

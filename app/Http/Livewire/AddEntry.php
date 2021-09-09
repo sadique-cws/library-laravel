@@ -38,19 +38,51 @@ class AddEntry extends Component
     }
 
     public function create_order(){
-        $order = new Order();
-        $order->user_id = $this->user_id;
-        $order->ordered = false;
-        $order->save();
-        $id = $order->id;
+        $existOrder  = Order::where("ordered",true)->where("user_id",$this->user_id)->get();
+        if($existOrder->count() < 1){
+            $order = new Order();
+            $order->user_id = $this->user_id;
+            $order->ordered = true;
+            $order->save();
+            $id = $order->id;
 
-        $oi = new OrderItem();
-        $oi->user_id = $this->user_id;
-        $oi->order_id = $id;
-        $oi->book_id = $this->book_id;
-        $oi->ordered = false;
-        $oi->qty = $this->qty;
-        $oi->save();
+            $existOi = OrderItem::where("ordered",true)->where("user_id",$this->user_id)->where("book_id",$this->book_id)->get();
+
+            if($existOi->count() < 1){
+                $oi = new OrderItem();
+                $oi->user_id = $this->user_id;
+                $oi->order_id = $id;
+                $oi->book_id = $this->book_id;
+                $oi->ordered = true;
+                $oi->qty = $this->qty;
+                $oi->save();
+            }
+            else{
+                $oiInsert = $existOi[0];
+                $oiInsert->qty = $oiInsert->qty += $this->qty;
+                $oiInsert->save();
+            }
+        }
+        else{
+            $existOi = OrderItem::where("ordered",true)->where("user_id",$this->user_id)->where("book_id",$this->book_id)->get();
+
+            if($existOi->count() < 1){
+                $oi = new OrderItem();
+                $oi->user_id = $this->user_id;
+                $oi->order_id = $existOrder[0]->id;
+                $oi->book_id = $this->book_id;
+                $oi->ordered = true;
+                $oi->qty = $this->qty;
+                $oi->save();
+            }
+            else{
+                $oiInsert = $existOi[0];
+                $oiInsert->qty = $oiInsert->qty += $this->qty;
+                $oiInsert->save();
+            }
+        }
+
+        
 
     }
 
