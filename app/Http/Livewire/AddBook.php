@@ -19,7 +19,7 @@ class AddBook extends Component
     ];
 
     public function clear(){
-        $this->title = $this->author = $this->isbn = $this->language = $this->edition = $this->rent_price = $this->no_of_page = "";
+        $this->reset();
     }
 
     public function save(){

@@ -21,6 +21,11 @@
             @error('password') <p class="text-danger small">{{$message}}</p> @enderror
         </div>
         <div class="mb-3">
+            <label for="">membership Fee</label>
+            <input type="text" wire:model="membership_fee" class="form-control" disabled>
+            @error('membership_fee') <p class="text-danger small">{{$message}}</p> @enderror
+        </div>
+        <div class="mb-3">
             <label for="">RF_Code</label>
             <input type="text" placeholder="enter password" wire:model="rfcode" class="form-control">
             @error('rfcode') <p class="text-danger small">{{$message}}</p> @enderror

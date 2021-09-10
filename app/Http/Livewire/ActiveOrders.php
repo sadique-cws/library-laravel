@@ -7,10 +7,11 @@ use Livewire\Component;
 class ActiveOrders extends Component
 {
 
-    public $orders,$search = "";
+    public $orders,$search = "", $count;
  
     public function mount(){
         $this->orders = Order::where("ordered",true)->get();
+        $this->count = 0;
     }
     public function render()
     {

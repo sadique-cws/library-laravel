@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 use App\Models\User;
 use Livewire\Component;
+use Alert;
 
 class ManageStudents extends Component
 {
@@ -10,6 +11,8 @@ class ManageStudents extends Component
 
     public function delete($id){
         User::find($id)->delete();
+        toast("Record deleted Successfully","error");
+        return redirect()->route("students.all");
     }
     public function render()
     {

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Livewire\Component;
+use Alert;
 
 class AddEntry extends Component
 {
@@ -19,7 +20,9 @@ class AddEntry extends Component
         $this->membership  = 500;
         $this->user_id = 0;
     }
-
+    public function clear(){
+        $this->reset();
+    }
     public function find(){
         $this->students = User::where("rfcode",$this->rfcode)->first();
         $this->user_id = $this->students->id;
@@ -81,7 +84,9 @@ class AddEntry extends Component
                 $oiInsert->save();
             }
         }
-
+        $this->clear();
+        toast("Entry Added Successfully","success");
+        return redirect()->route('orders.active');
         
 
     }
